@@ -1,4 +1,4 @@
-class Polynomial {
+export class Polynomial {
 
   constructor(coefficients){
     this.coefficients = coefficients
@@ -10,7 +10,7 @@ class Polynomial {
 
   hornerStep(z) {
     return function(value, coefficient){
-      return value*z + coefficient;
+      return z.mult(value).add(coefficient);
     };
   }
 
@@ -25,6 +25,12 @@ class Polynomial {
       (c, i) => c * (this.degree() - i);
     )
     derivative.pop()
-    return Polynomial.new(derivative)
+    return polynomial(derivative)
   }
 }
+
+var polynomial = function(coefficients){
+  return new Polynomial(coefficients)
+}
+
+export default polynomial;
