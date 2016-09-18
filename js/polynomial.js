@@ -1,7 +1,10 @@
 export class Polynomial {
 
   constructor(coefficients){
-    this.coefficients = coefficients
+    if (coefficients === undefined){
+      let coefficients = [];
+    }
+    this.coefficients = coefficients;
   }
 
   degree() {
@@ -21,15 +24,18 @@ export class Polynomial {
   D(z) {
     if (this.degree < 0) return []
 
-    let derivative = this.coefficients.map(
-      (c, i) => c * (this.degree() - i);
-    )
-    derivative.pop()
+    let derivative = this.coefficients.map((c, i) => {
+      if (c.constructor.name === "Complex"){
+        return c.mult(this.degree() - i);
+      } else {
+        return c * (this.degree() - i);
+      }
+    }).pop()
     return polynomial(derivative)
   }
 }
 
-var polynomial = function(coefficients){
+var polynomial = function(...coefficients){
   return new Polynomial(coefficients)
 }
 

@@ -18,16 +18,5 @@ test("does complex multiplication", () => {
 
 test("i*i = -1", () => {
   const z = (complex(0, 1)).mult(complex(0, 1));
-  expect(z).toBe(complex(0, -1));
-})
-
-
-// console.log((new Complex()).constructor.name)
-//
-// console.log((1).constructor.name)
-//
-// console.log((new Complex()).toString())
-//
-// console.log((new Complex(1, 2)).mult(new Complex(3, 4)).toString())
-//
-// why not write some actual tests you knob head??
+  expect(z).toEqual(complex(-1, 0));
+});
