@@ -2,13 +2,18 @@ export class Polynomial {
 
   constructor(coefficients){
     if (coefficients === undefined){
-      let coefficients = [];
+      this.coefficients = [];
+    } else {
+      this.coefficients = coefficients;
     }
-    this.coefficients = coefficients;
   }
 
   degree() {
-    return coefficients.length - 1;
+    if (this.coefficients.length === 0){
+      return -Infinity;
+    } else {
+      return this.coefficients.length - 1;
+    }
   }
 
   hornerStep(z) {
@@ -36,7 +41,13 @@ export class Polynomial {
 }
 
 var polynomial = function(...coefficients){
-  return new Polynomial(coefficients)
+  return new Polynomial(coefficients);
 }
 
 export default polynomial;
+
+var z = polynomial();
+
+console.log(z.coefficients);
+console.log(z.hornerStep(0));
+console.log(z.degree());

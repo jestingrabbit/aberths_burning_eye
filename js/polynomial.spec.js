@@ -1,5 +1,6 @@
 import Polynomial from './polynomial.js';
 import {default as polynomial} from './polynomial.js';
+import {default as complex} from './complex.js';
 
 describe("Polynomial", () => {
   it("creates instances of the right class", () => {
@@ -12,10 +13,19 @@ describe("Polynomial", () => {
     expect(p.constructor.name).toBe("Polynomial");
   });
 
-  // test("does complex multiplication", () => {
-  //   const z = (complex(1, 2)).mult(complex(3, 4));
-  //   expect(z).toEqual(complex(-5, 10))
-  // });
+  describe("correctly handles the 0 polynomial", () => {
+    it("gets the degree right", () =>{
+      const pZero = polynomial();
+      expect(pZero.degree()).toEqual(-Infinity);
+    });
+    it("evaluates at 0 to 0", () => {
+      const pZero = polynomial();
+      expect(pZero.evalAt(complex(0, 0))).toEqual(0);
+    });
+
+    // expect(pZero.evalAt(1)).toEqual(0);
+    // expect(pZero.evalAt(complex(3, 4))).toEqual(0);
+  });
   //
   // test("i*i = -1", () => {
   //   const z = (complex(0, 1)).mult(complex(0, 1));
