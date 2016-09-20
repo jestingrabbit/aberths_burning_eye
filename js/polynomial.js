@@ -23,7 +23,7 @@ export class Polynomial {
   }
 
   evalAt(z) {
-    return this.coefficients.reduce(hornerStep(z), 0);
+    return this.coefficients.reduce(this.hornerStep(z), 0);
   }
 
   D(z) {

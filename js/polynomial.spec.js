@@ -22,6 +22,11 @@ describe("Polynomial", () => {
       const pZero = polynomial();
       expect(pZero.evalAt(complex(0, 0))).toEqual(0);
     });
+    it("evaluates at 3 + 4i to 0", () => {
+      const pZero = polynomial();
+      const z = complex(3, 4);
+      expect(pZero.evalAt(z)).toEqual(0);
+    });
 
     // expect(pZero.evalAt(1)).toEqual(0);
     // expect(pZero.evalAt(complex(3, 4))).toEqual(0);
