@@ -15,15 +15,27 @@ export class Complex {
     this.img = img;
   }
 
-  add(z){
+  scalarAdd(x){
+    return new Complex(this.re + x, this.img);
+  }
+
+  complexAdd(z){
     return new Complex(this.re + z.re, this.img + z.img);
   }
 
-  scalar_mult(x){
+  add(a){
+    if (a.constructor.name === "Complex") {
+      return this.complexAdd(a);
+    } else {
+      return this.scalarAdd(a);
+    }
+  }
+
+  scalarMult(x){
     return new Complex(this.re * x, this.img * x);
   }
 
-  complex_mult(z){ //consider M3 after reading the article.
+  complexMult(z){ //consider M3 after reading the article.
     return new Complex(
       this.re * z.re - this.img * z.img,
       this.re * z.img + this.img * z.re
@@ -32,9 +44,9 @@ export class Complex {
 
   mult(a){
     if (a.constructor.name === "Complex") {
-      return this.complex_mult(a);
+      return this.complexMult(a);
     } else {
-      return this.scalar_mult(a);
+      return this.scalarMult(a);
     }
   }
 
@@ -64,5 +76,15 @@ export class Complex {
 var complex = function(a, b, polar){
   return new Complex(a, b, polar);
 };
+
+var makeComplex = function(a){
+  if(a.constructor.name = "Complex") {
+    return a;
+  } else if (a.constructor.name = "Number") {
+    return complex(a, 0);
+  } else {
+    return null;
+  }
+}
 
 export default complex;
