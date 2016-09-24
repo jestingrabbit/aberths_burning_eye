@@ -20,8 +20,7 @@ export class Polynomial {
 
   hornerStep(z) { // ye olde ax^2 + bx + c = ((a)*x + b)*x + c <- fewer mults
     return function(value, coefficient){
-      console.log(complex(z).constructor.name)
-      return (complex(z)).mult(value).add(coefficient);
+      return z.mult(value).add(coefficient);
     };
   }
 
@@ -30,7 +29,7 @@ export class Polynomial {
   }
 
   D(z) {
-    if (this.degree < 0) return []
+    if (this.degree < 0) return [];
 
     let derivative = this.coefficients.map((c, i) => {
       if (c.constructor.name === "Complex"){
@@ -38,13 +37,13 @@ export class Polynomial {
       } else {
         return c * (this.degree() - i);
       }
-    }).pop()
-    return polynomial(derivative)
+    }).pop();
+    return polynomial(derivative);
   }
 }
 
 var polynomial = function(...coefficients){
-  return new Polynomial(coefficients.map(complex));
-}
+  return new Polynomial(coefficients.map((x)=>complex(x))); //otherwise you get phantom args being passed.
+};
 
 export { polynomial, Polynomial };

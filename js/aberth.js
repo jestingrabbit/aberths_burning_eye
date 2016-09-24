@@ -1,4 +1,4 @@
-import polynomial from 'polynomial';
+import { polynomial } from 'polynomial';
 
 class aberth {
 

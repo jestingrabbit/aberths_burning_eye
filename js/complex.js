@@ -1,6 +1,6 @@
 class Complex {
 
-  constructor(a=1, b=0, polar = false){
+  constructor(a = 1, b = 0, polar = false){
     //consider having re + img || r + arg, and fill them in as you need them...
     let re, img;
 
@@ -75,7 +75,7 @@ class Complex {
 
 var complex = function(a, b = 0, polar = false){
   if (a.constructor.name === "Complex") {
-    return complex;
+    return a;
   }
   return new Complex(a, b, polar);
 };
