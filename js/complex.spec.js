@@ -1,5 +1,4 @@
-import Complex from './complex.js';
-import {default as complex} from './complex.js';
+import { Complex, complex } from './complex.js';
 
 test("Complex creates instances", () => {
   const complex_one = new Complex();

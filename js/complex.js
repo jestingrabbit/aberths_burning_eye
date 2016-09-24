@@ -1,4 +1,4 @@
-export class Complex {
+class Complex {
 
   constructor(a=1, b=0, polar = false){
     //consider having re + img || r + arg, and fill them in as you need them...
@@ -71,20 +71,13 @@ export class Complex {
   toString(){
     return this.re + " + i*" + this.img;
   }
-};
+}
 
-var complex = function(a, b, polar){
+var complex = function(a, b = 0, polar = false){
+  if (a.constructor.name === "Complex") {
+    return complex;
+  }
   return new Complex(a, b, polar);
 };
 
-var makeComplex = function(a){
-  if(a.constructor.name = "Complex") {
-    return a;
-  } else if (a.constructor.name = "Number") {
-    return complex(a, 0);
-  } else {
-    return null;
-  }
-}
-
-export default complex;
+export { Complex, complex };

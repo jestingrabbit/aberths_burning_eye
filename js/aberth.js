@@ -1,8 +1,9 @@
-import Polynomial from 'polynomial';
+import polynomial from 'polynomial';
 
 class aberth {
 
-  solution: Polynomial.new() // and suddenly I realise I need to make complex numbers.
+  solution(){return polynomial();} // and suddenly I realise I need to make complex numbers.
+                                  // and its wrong anyway...
 
 
 

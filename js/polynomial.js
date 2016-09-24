@@ -1,3 +1,5 @@
+import { complex } from './complex.js';
+
 export class Polynomial {
 
   constructor(coefficients){
@@ -16,9 +18,10 @@ export class Polynomial {
     }
   }
 
-  hornerStep(z) {
+  hornerStep(z) { // ye olde ax^2 + bx + c = ((a)*x + b)*x + c <- fewer mults
     return function(value, coefficient){
-      return z.mult(value).add(coefficient);
+      console.log(complex(z).constructor.name)
+      return (complex(z)).mult(value).add(coefficient);
     };
   }
 
@@ -41,13 +44,7 @@ export class Polynomial {
 }
 
 var polynomial = function(...coefficients){
-  return new Polynomial(coefficients);
+  return new Polynomial(coefficients.map(complex));
 }
 
-export default polynomial;
-
-var z = polynomial();
-
-console.log(z.coefficients);
-console.log(z.hornerStep(0));
-console.log(z.degree());
+export { polynomial, Polynomial };
