@@ -8,10 +8,11 @@ class RootsOfUnity {
   }
 
   get(n){
-    if (this.roots[n]) return this.roots[n];
-
-    this.roots[n] = Array.from(new Array(5), (_, i) => i)
-                     .map((i) => complex(1, i*twoPi/n, polar=true));
+    if (!(this.roots[n])){
+      this.roots[n] = Array.from(new Array(5), (_, i) => {return i - Math.floor(n/2)} )
+                        .map((i) => complex(1, i*twoPi/n, polar=true));
+    }
+    return this.roots[n];
   }
 }
 
