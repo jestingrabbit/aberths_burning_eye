@@ -20,13 +20,17 @@ describe("Polynomial", () => {
     });
 
     it("evaluates at 0 to 0", () => {
-      expect(pZero.evalAt(complex(0))).toEqual(0);
+      expect(pZero.evalAt(complex(0))).toEqual(complex(0));
     });
 
     it("evaluates at 3 + 4i to 0", () => {
       const z = complex(3, 4);
-      expect(pZero.evalAt(z)).toEqual(0);
+      expect(pZero.evalAt(z)).toEqual(complex(0));
     });
+
+    it("D(0) = 0", () => {
+      expect(pZero.D().coefficients).toEqual([]);
+    })
   });
 
   describe("handles x^2 + 2x + 1", () =>{
@@ -44,5 +48,10 @@ describe("Polynomial", () => {
       const z = complex(3, 4);
       expect(p.evalAt(z)).toEqual(complex(0, 32));
     });
+
+    it("D(x^2 + 2x + 1) = 2x + 2", () => {
+      expect(p.D().coefficients).toEqual([complex(2), complex(2)]);
+    })
+
   });
 });

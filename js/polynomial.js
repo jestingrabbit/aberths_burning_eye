@@ -25,20 +25,18 @@ export class Polynomial {
   }
 
   evalAt(z) {
-    return this.coefficients.reduce(this.hornerStep(z), 0);
+    return this.coefficients.reduce(this.hornerStep(z), complex(0));
   }
 
-  D(z) {
-    if (this.degree < 0) return [];
+  D() {
+    if (this.degree() < 0) return polynomial();
 
     let derivative = this.coefficients.map((c, i) => {
-      if (c.constructor.name === "Complex"){
-        return c.mult(this.degree() - i);
-      } else {
-        return c * (this.degree() - i);
-      }
-    }).pop();
-    return polynomial(derivative);
+      return c.mult(this.degree() - i);
+    });
+    
+    derivative.pop();
+    return new Polynomial(derivative);
   }
 }
 
