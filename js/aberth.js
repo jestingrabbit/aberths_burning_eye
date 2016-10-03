@@ -1,15 +1,18 @@
-import { polynomial } from 'polynomial';
+import { polynomial } from './polynomial.js';
+import { RootsOfUnity } from './rootsOfUnity.js'
+
+let roots = new RootsOfUnity();
 
 class aberth {
 
-  constructor(p){
-    this.poly = p
-    this.soln = Array.from(new Array(5), (_, i) => i)
-      .map((i)=> complex(1, ))
+  constructor(poly, soln){
+    if (!soln) {
+      soln = roots[poly.degree()];
+    }
+    this.poly = poly;
+    this.soln = soln;
   }
 
-  solution(){return polynomial();} // and suddenly I realise I need to make complex numbers.
-                                  // and its wrong anyway...
 
 
 

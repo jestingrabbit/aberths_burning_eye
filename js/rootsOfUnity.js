@@ -3,6 +3,7 @@ import { Complex } from './complex.js';
 let twoPi = 2*Math.PI;
 
 class RootsOfUnity {
+
   construction(){
     this.roots = {1: [complex(1)]};
   }
@@ -15,3 +16,5 @@ class RootsOfUnity {
     return this.roots[n];
   }
 }
+
+export { RootsOfUnity };

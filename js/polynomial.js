@@ -11,11 +11,14 @@ export class Polynomial {
   }
 
   degree() {
+    if(this._degree != undefined) { return this._degree }
+
     if (this.coefficients.length === 0){
-      return -Infinity;
+      this._degree = -Infinity;
     } else {
-      return this.coefficients.length - 1;
+      this._degree = this.coefficients.length - 1;
     }
+    return this._degree;
   }
 
   hornerStep(z) { // ye olde ax^2 + bx + c = ((a)*x + b)*x + c <- fewer mults
@@ -29,12 +32,17 @@ export class Polynomial {
   }
 
   D() {
-    if (this.degree() < 0) return polynomial();
+    if (this._D != undefined){ return this._D }
+
+    if (this.degree() < 0){
+      this._D = polynomial()
+      return this._D;
+    }
 
     let derivative = this.coefficients.map((c, i) => {
       return c.mult(this.degree() - i);
     });
-    
+
     derivative.pop();
     return new Polynomial(derivative);
   }
