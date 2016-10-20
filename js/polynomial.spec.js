@@ -44,7 +44,7 @@ describe("Polynomial", () => {
       expect(p.evalAt(complex(0))).toEqual(complex(1));
     });
 
-    it("evaluates at 3 + 4i to 8i", () => {
+    it("evaluates at 3 + 4i to 32i", () => {
       const z = complex(3, 4);
       expect(p.evalAt(z)).toEqual(complex(0, 32));
     });
