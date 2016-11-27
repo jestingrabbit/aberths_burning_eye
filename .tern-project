@@ -1,0 +1,21 @@
+{
+  "ecmaVersion": 7,
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "loadEagerly": [
+    "js*"
+  ],
+  "plugins": {
+    "modules": {
+      "dontLoad": "",
+      "load": "",
+      "modules": ""
+    },
+    "es_modules": {},
+    "complete_strings": {
+      "maxLength": 15
+    }
+  }
+}

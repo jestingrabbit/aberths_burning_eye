@@ -15,6 +15,13 @@ class RootsOfUnity {
     }
     return this.roots[n];
   }
+
+  perturbed(n){
+    const roots = this.get(n);
+    const rand = twoPi*Math.random()/n;
+    const perturbance = complex(1, rand, polar=true);
+    return roots.map( r => r.mult(perturbance) );
+  }
 }
 
 export { RootsOfUnity };
