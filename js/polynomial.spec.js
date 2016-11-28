@@ -16,7 +16,7 @@ describe("Polynomial", () => {
     const pZero = polynomial();
 
     it("gets the degree right", () =>{
-      expect(pZero.degree()).toEqual(-Infinity);
+      expect(pZero.degree).toEqual(-Infinity);
     });
 
     it("evaluates at 0 to 0", () => {
@@ -37,7 +37,7 @@ describe("Polynomial", () => {
     const p = polynomial(1, 2, 1);
 
     it("gets the degree right", () =>{
-      expect(p.degree()).toEqual(2);
+      expect(p.degree).toEqual(2);
     });
 
     it("evaluates at 0 to 1", () => {

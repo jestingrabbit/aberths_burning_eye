@@ -8,44 +8,39 @@ export class Polynomial {
     } else {
       this.coefficients = coefficients;
     }
-  }
-
-  degree() {
-    if(this._degree != undefined) { return this._degree }
-
     if (this.coefficients.length === 0){
-      this._degree = -Infinity;
+      this.degree = -Infinity;
     } else {
-      this._degree = this.coefficients.length - 1;
+      this.degree = this.coefficients.length - 1;
     }
-    return this._degree;
   }
 
-  hornerStep(z) { // ye olde ax^2 + bx + c = ((a)*x + b)*x + c <- fewer mults
+  static hornerStep(z) { // ye olde ax^2 + bx + c = ((a)*x + b)*x + c <- fewer mults
     return function(value, coefficient){
       return z.mult(value).add(coefficient);
     };
   }
 
   evalAt(z) {
-    return this.coefficients.reduce(this.hornerStep(z), complex(0));
+    return this.coefficients.reduce(Polynomial.hornerStep(z), complex(0));
   }
 
   D() {
     if (this._D != undefined){ return this._D }
 
-    if (this.degree() < 0){
-      this._D = polynomial()
-      return this._D;
+    if (this.degree < 0){
+      return this;
     }
-
     let derivative = this.coefficients.map((c, i) => {
-      return c.mult(this.degree() - i);
+      return c.mult(this.degree - i);
     });
-
     derivative.pop();
-    return new Polynomial(derivative);
+
+    this._D = new Polynomial(derivative)
+    return this._D;
   }
+
+  // newton()
 }
 
 var polynomial = function(...coefficients){
