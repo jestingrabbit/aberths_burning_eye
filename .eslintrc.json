@@ -154,7 +154,8 @@
         "no-underscore-dangle": [
             2,
             {
-                "allowAfterThis": true
+                "allowAfterThis": true,
+                "allowAfterSuper": true,
             }
         ],
         "no-unmodified-loop-condition": 2,
