@@ -1,6 +1,6 @@
 import { complex } from './complex.js';
 
-export class Polynomial {
+class Polynomial {
 
   constructor(coefficients){
     if (coefficients === undefined){
