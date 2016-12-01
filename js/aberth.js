@@ -35,10 +35,25 @@ class Aberth {
   }
 
   sumsOfInversesOfDifferences(){
-    let matrix = Array.from({length: this.poly.degree},
-      (_, i)=>Array.from({length: this.poly.degree},
-        (__, j)=>[i, j]));
-    matrix.map(([i,j])=>)
+    const triangle = Array.from({length: this.poly.degree},
+      (_, i)=>Array.from({length: i},
+        (__, j)=>[i, j]
+      )
+    );
+    const inversesOfDifferences = triangle.map(
+      ([i, j])=>(1/(this.soln[i] - this.soln[j]))
+    );
+    const rowSums = inversesOfDifferences.map(
+      (a)=>(a.reduce((x, y)=>(x+y), 0))
+    );
+    const colSums = Array.from({length: this.poly.degree},
+      (_, i)=>(Array.from({length: this.poly.degree - 1 - i},
+        (__, j)=>(inversesOfDifferences[j+i+1][i])).reduce((a, b)=>(a+b), 0)
+      )
+    );
+    return Array.from({length: this.poly.degree},
+      (_, i)=>(rowSums[i] + colSums[i])
+    );
   }
 
 
