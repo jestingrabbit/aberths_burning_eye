@@ -31,6 +31,22 @@ class Complex {
     }
   }
 
+  scalarSub(x){
+    return new Complex(this.re - x, this.img);
+  }
+
+  complexSub(z){
+    return new Complex(this.re - z.re, this.img - z.img);
+  }
+
+  sub(a){
+    if (a.constructor.name === "Complex") {
+      return this.complexSub(a);
+    } else {
+      return this.scalarSub(a);
+    }
+  }
+
   scalarMult(x){
     return new Complex(this.re * x, this.img * x);
   }
@@ -66,6 +82,23 @@ class Complex {
     let invM2 = 1/(this.re * this.re + this.img * this.img);
     return new Complex(invM2 * this.re, invM2 * this.img);
     //return (this.conj()).s_mult(1/this.mod2()); has a lot more overhead.
+  }
+
+  scalarDiv(x){
+    return new Complex(this.re/x, this.img/x);
+  }
+
+  complexDiv(z){
+    return this.mult(z.inv());
+    // less overhead is possible, but see how this goes.
+  }
+
+  div(a){
+    if (a.constructor.name === "Complex") {
+      return this.complexDiv(a);
+    } else {
+      return this.scalarDiv(a);
+    }
   }
 
   toString(){
