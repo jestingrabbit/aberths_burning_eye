@@ -13,17 +13,23 @@ class Aberth {
     this.soln = soln;
     this.stability = stability;
 
-    if (this.stability == "low"){
-      this.step = Aberth.lowStabilityStep;
-    } else if (this.stability == "high") {
-      this.step = Aberth.highStabilityStep;
-    } else {
-      this.step = Aberth.mehStabilityStep;
-    }
+    // if (this.stability == "low"){
+      this.step = this.lowStabilityStep;
+    // } else if (this.stability == "high") {
+    //   this.step = Aberth.highStabilityStep;
+    // } else {
+    //   this.step = Aberth.mehStabilityStep;
+    // }
   }
 
   lowStabilityStep(){
-
+    this.soln = this.sumsOfInversesOfDifferences().map(
+      (sum, i)=>{
+        const zi = this.soln[i];
+        return sum.sub(this.inverseNewtonsCorrection(zi)).inv().add(zi);
+      }
+    );
+    return this.soln;
   }
 
   newtonsCorrection(z){
@@ -49,7 +55,7 @@ class Aberth {
       )
     );
     return Array.from({length: this.poly.degree},
-      (_, i)=>(rowSums[i].sub(colSums[i]))
+      (_, i)=>(colSums[i].sub(rowSums[i]))
     );
   }
 }

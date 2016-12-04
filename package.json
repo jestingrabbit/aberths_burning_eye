@@ -6,6 +6,10 @@
   "scripts": {
     "test": "jest"
   },
+  "jest":{
+    "collectCoverage": true,
+    "collectCoverageFrom": ["js/*.js"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jestingrabbit/aberths_burning_eye.git"
