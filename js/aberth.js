@@ -14,7 +14,7 @@ class Aberth {
     this.stability = stability;
 
     // if (this.stability == "low"){
-      this.step = this.lowStabilityStep;
+    this.step = this.lowStabilityStep;
     // } else if (this.stability == "high") {
     //   this.step = Aberth.highStabilityStep;
     // } else {
