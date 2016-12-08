@@ -4,6 +4,9 @@
         "es6": true,
         "jest": true
     },
+    "plugins": [
+        "jest"
+    ],
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
