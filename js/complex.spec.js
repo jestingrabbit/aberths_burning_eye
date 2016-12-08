@@ -38,6 +38,23 @@ test("does complex multiplication", () => {
   expect(z).toEqual(complex(-5, 10));
 });
 
+test("does mod and mod2 right", () => {
+  const z = (complex(3, 4));
+  expect(z.mod()).toEqual(5);
+  expect(z.mod2()).toEqual(25);
+});
+
+test("conjugates", () => {
+  const z = complex(3, 4);
+  expect(z.conj()).toEqual(complex(3, -4));
+});
+
+test("inverts", () => {
+  const z = complex(3, 4);
+  expect(z.conj().mult(1/z.mod2(z))).toEqual(z.inv());
+  expect(z.inv().mult(z)).toEqual(complex(1));
+});
+
 test("i*i = -1", () => {
   const z = (complex(0, 1)).mult(complex(0, 1));
   expect(z).toEqual(complex(-1, 0));

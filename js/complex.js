@@ -80,7 +80,7 @@ class Complex {
 
   inv(){
     let invM2 = 1/(this.re * this.re + this.img * this.img);
-    return new Complex(invM2 * this.re, invM2 * this.img);
+    return new Complex(invM2 * this.re, -invM2 * this.img);
     //return (this.conj()).s_mult(1/this.mod2()); has a lot more overhead.
   }
 
