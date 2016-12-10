@@ -10,6 +10,15 @@ test("factory creates Complex", () => {
   expect(z.constructor.name).toBe("Complex");
 });
 
+test("has string representation", () => {
+  const z = complex(3, 4);
+  expect(z.toString()).toEqual("3 + 4i");
+  const w = complex(3, -4);
+  expect(w.toString()).toEqual("3 - 4i");
+  const x = complex(3, 0);
+  expect(x.toString()).toEqual("3");
+});
+
 test("responds to polar inputs", () => {
   const z = complex(1, Math.PI/2, true);
   expect(z.constructor.name).toBe("Complex");
@@ -36,6 +45,13 @@ test("does complex multiplication", () => {
   expect(w).toEqual(complex(3, 6));
   const z = (complex(1, 2)).mult(complex(3, 4));
   expect(z).toEqual(complex(-5, 10));
+});
+
+test("does complex division", () => {
+  const w = (complex(1, 2)).div(3);
+  expect(w).toEqual(complex(1/3, 2/3));
+  const z = (complex(1, 2)).div(complex(3, 4));
+  expect(z).toEqual(complex(11/25, 2/25));
 });
 
 test("does mod and mod2 right", () => {

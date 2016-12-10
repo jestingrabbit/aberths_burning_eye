@@ -213,7 +213,11 @@ class Complex {
    * @return {string}  prettiness is useful at times.
    */
   toString(){
-    return this.re + " + i*" + this.im;
+    if (this.im === 0) {return this.re.toString();}
+
+    let middleSign = (this.im > 0) ? "+" : "-";
+
+    return `${this.re} ${middleSign} ${Math.abs(this.im)}i`;
   }
 }
 
