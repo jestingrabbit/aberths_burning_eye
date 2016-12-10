@@ -14,7 +14,7 @@ test("responds to polar inputs", () => {
   const z = complex(1, Math.PI/2, true);
   expect(z.constructor.name).toBe("Complex");
   expect(Math.log2(z.re)).toBeLessThan(-53); //precision of of 64 bit IEEE 754
-  expect(z.img).toEqual(1);
+  expect(z.im).toEqual(1);
 });
 
 test("does complex addition", () => {
