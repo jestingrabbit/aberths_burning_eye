@@ -156,7 +156,7 @@
         "no-undef-init": 2,
         "no-undefined": 0,
         "no-underscore-dangle": [
-            2,
+            1,
             {
                 "allowAfterThis": true
             }

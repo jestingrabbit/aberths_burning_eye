@@ -51,6 +51,10 @@ describe("Polynomial", () => {
 
     it("D(x^2 + 2x + 1) = 2x + 2", () => {
       expect(p.D().coefficients).toEqual([complex(2), complex(2)]);
+    });
+
+    it("uses the cached derivative", () => {
+      expect(p.D()).toBe(p.D());
     })
 
   });
