@@ -6,9 +6,9 @@ class Complex {
   /**
    * @constructor
    *
-   * @param {Number} a - a number, the real part, or the modulus
-   * @param {Number} b - a number, the imaginary part, or the argument
-   * @param {Boolean} [polar=false] - a flag to determine how to read the arguments
+   * @param {number} a - a number, the real part, or the modulus
+   * @param {number} b - a number, the imaginary part, or the argument
+   * @param {boolean} [polar=false] - a flag to determine how to read the arguments
    */
   constructor(a = 1, b = 0, polar = false){
     //consider having re + im || r + arg, and fill them in as you need them...
@@ -28,7 +28,7 @@ class Complex {
   /**
    * scalarAdd - adds a Number to this
    *
-   * @param {Number} x - a number to be added
+   * @param {number} x - a number to be added
    * @return {Complex} the sum of x and this
    */
   scalarAdd(x){
@@ -48,7 +48,7 @@ class Complex {
   /**
    * add - adds a complex or number to this
    *
-   * @param {(Number|Complex)} a - a complex or number to be added
+   * @param {number|Complex} a - a complex or number to be added
    * @return {Complex} the sum of a and this
    */
   add(a){
@@ -62,7 +62,7 @@ class Complex {
   /**
    * scalarSub - subtract x from this
    *
-   * @param {Number} x - a number to be subtracted
+   * @param {number} x - a number to be subtracted
    * @return {Complex} - this-a
    */
   scalarSub(x){
@@ -72,7 +72,7 @@ class Complex {
   /**
    * complexSub - subtract z from this
    *
-   * @param {Number} z - a complex to be subtracted
+   * @param {number} z - a complex to be subtracted
    * @return {Complex} - this-z
    */
   complexSub(z){
@@ -82,7 +82,7 @@ class Complex {
   /**
    * sub - subtract a complex or number from this
    *
-   * @param {(Number|Complex)} a - a complex or number to be subtracted
+   * @param {number|Complex} a - a complex or number to be subtracted
    * @return {Complex} - this-a
    */
   sub(a){
@@ -96,7 +96,7 @@ class Complex {
   /**
    * scalarMult - multiply by a plain number
    *
-   * @param  {Number} x - a number to multiply this by
+   * @param  {number} x - a number to multiply this by
    * @return {Complex}  - this*x
    */
   scalarMult(x){
@@ -119,7 +119,7 @@ class Complex {
   /**
    * mult - multiply this by a complex or number
    *
-   * @param  {(Complex|Number)} a - a complex or number to multiply by
+   * @param  {Complex|number} a - a complex or number to multiply by
    * @return {Complex}   - this*a
    */
   mult(a){
@@ -133,7 +133,7 @@ class Complex {
   /**
    * mod2 - the modulus of this squared
    *
-   * @return {Number} >0
+   * @return {number} >0
    */
   mod2(){
     return this.re * this.re + this.im * this.im;
@@ -142,7 +142,7 @@ class Complex {
   /**
    * mod - the modulus of the number
    *
-   * @return {Number}  >0
+   * @return {number}  >0
    */
   mod(){
     return Math.sqrt(this.mod2());
@@ -171,7 +171,7 @@ class Complex {
   /**
    * scalarDiv - divide this by a number.
    *
-   * @param  {Number} x the divisor
+   * @param  {number} x the divisor
    * @return {Complex}  this/x
    */
   scalarDiv(x){
@@ -196,7 +196,7 @@ class Complex {
   /**
    * div - divide this by a
    *
-   * @param  {(Complex|Number)} a - the divisor
+   * @param  {Complex|number} a - the divisor
    * @return {Complex}   this/a
    */
   div(a){
@@ -225,8 +225,8 @@ class Complex {
 /**
  * var - a factory - can take a complex.
  *
- * @param  {(Complex|Number)} a - either a complex or real part or modulus
- * @param  {Number} [b = 0]     - either imaginary part or argument
+ * @param  {Complex|number} a - either a complex or real part or modulus
+ * @param  {number} [b = 0]     - either imaginary part or argument
  * @param  {Boolean} [polar = false] - whether the coords are polar or rectilinear
  * @return {Complex}  the complex number described.
  */
