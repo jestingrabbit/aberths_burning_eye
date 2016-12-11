@@ -13,9 +13,8 @@ class RootsOfUnity {
    * @constructor
    */
   constructor(){
-    this.roots = {1: [complex(1)]};
+    this._roots = {1: [complex(1)]};
   }
-
 
   /**
    * get - returns an array of the nth roots of 1
@@ -24,13 +23,13 @@ class RootsOfUnity {
    * @return {Complex[]}   an array of the roots
    */
   get(n){
-    if (!(this.roots[n])){
-      this.roots[n] = Array
+    if (!(this._roots[n])){
+      this._roots[n] = Array
         .from(new Array(n),
           (_, i) => Math.floor(n/2) - i )
         .map( i => complex(1, i*twoPi/n, true) );
     }
-    return this.roots[n];
+    return this._roots[n];
   }
 
   /**
