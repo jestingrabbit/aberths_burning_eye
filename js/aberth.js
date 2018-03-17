@@ -17,7 +17,7 @@ class Aberth {
    * @param {Complex[]} guess - array of complex numbers, length the degree of poly
    * @param {string} stability - we're using the low stability Aberth version.
    */
-  constructor(poly, guess, stability = "low"){
+  constructor(poly, guess, stability = "high"){
     if (!guess) {
       guess = roots.perturbed(poly.degree)
     }
@@ -25,10 +25,10 @@ class Aberth {
     this.guess = guess
     this.stability = stability
 
-    this.step = this.lowStabilityStep
+    this.step = this.highStabilityStep
   }
 
-  lowStabilityStep(){
+  highStabilityStep(){
     const sumsOfInversesOfDifferences = this.guess.map(
       (zi, i)=>(this.guess.map(
         (zj, j)=>{
@@ -49,6 +49,21 @@ class Aberth {
 
   newtonsCorrection(z){
     return this.poly.evalAt(z).div(this.poly.D().evalAt(z))
+  }
+
+  solve(tolerance = 0.000000000001){
+    var unsolved = true
+    while (unsolved) {
+      const oldGuess = this.guess
+      this.step()
+      const newGuess = this.guess
+      unsolved = oldGuess
+        .map((zi, i)=>{
+          return zi.sub(newGuess[i]).mod() > tolerance
+        })
+        .filter((x)=>x).length
+    }
+    return this.guess
   }
 }
 

@@ -64,7 +64,7 @@ describe("Aberth", () => {
   //   expect(newGuess).toEqual(fifthRoots)
   // })
 
-  it("doesn't move the roots of unity much", () => {
+  it("solves x^2 + 4 exactly after a few iterations", () => {
     const p = polynomial(1, 0, 4)
     const guess = [complex(1, 1), complex(-1, 2)]
     const solver = new Aberth(p, guess)
@@ -76,6 +76,14 @@ describe("Aberth", () => {
     const newGuess = solver.step()
 
     expect(newGuess).toEqual([complex(0, -2), complex(0, 2)])
+  })
+
+  it("can solve to a tolerance", () => {
+    const p = polynomial(1, 0, 4)
+    const guess = [complex(1, 1), complex(-1, 2)]
+    const solver = new Aberth(p, guess)
+
+    expect(solver.solve(0.000000000001)).toEqual([complex(0, -2), complex(0, 2)])
   })
 
 })

@@ -29,5 +29,8 @@
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^2.0.0-rc.1",
     "jest": "^22.4.2"
+  },
+  "dependencies": {
+    "npm": "^5.7.1"
   }
 }
