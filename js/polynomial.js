@@ -3,6 +3,8 @@ import { complex } from './complex.js';
 /**
  * @classdesc a class for polynomials with complex coefficients but
  * not with any ring operations, just as differentiable functions
+ *
+ * nb: polynomial(1, 0, 7) = x^2 + 7
  */
 class Polynomial {
 

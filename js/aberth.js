@@ -1,62 +1,54 @@
-// import { polynomial } from './polynomial.js';
+// import { polynomial } from './polynomial.js'
 import { RootsOfUnity } from './rootsOfUnity.js'
+import { complex } from './complex.js'
 
-let roots = new RootsOfUnity();
+let roots = new RootsOfUnity()
 
+/**
+ * @classdesc Something to solve a polynomical over the complex numbers.
+ * It should calculate a solution at some juncture.
+ */
 class Aberth {
 
-  constructor(poly, soln, stability = "low"){
-    if (!soln) {
-      soln = roots.perturbed(poly.degree);
+  /**
+   * @constructor
+   *
+   * @param {Polynomial} poly - one of our polynomials
+   * @param {Complex[]} guess - array of complex numbers, length the degree of poly
+   * @param {string} stability - we're using the low stability Aberth version.
+   */
+  constructor(poly, guess, stability = "low"){
+    if (!guess) {
+      guess = roots.perturbed(poly.degree)
     }
-    this.poly = poly;
-    this.soln = soln;
-    this.stability = stability;
+    this.poly = poly
+    this.guess = guess
+    this.stability = stability
 
-    // if (this.stability == "low"){
-    this.step = this.lowStabilityStep;
-    // } else if (this.stability == "high") {
-    //   this.step = Aberth.highStabilityStep;
-    // } else {
-    //   this.step = Aberth.mehStabilityStep;
-    // }
+    this.step = this.lowStabilityStep
   }
 
   lowStabilityStep(){
-    this.soln = this.sumsOfInversesOfDifferences().map(
+    const sumsOfInversesOfDifferences = this.guess.map(
+      (zi, i)=>(this.guess.map(
+        (zj, j)=>{
+          return (i == j) ? 0 : zi.sub(zj).inv()
+        }).reduce((sum, val)=>(sum.add(val)), complex(0))
+      )
+    )
+
+    this.guess = sumsOfInversesOfDifferences.map(
       (sum, i)=>{
-        const zi = this.soln[i];
-        return sum.sub(this.inverseNewtonsCorrection(zi)).inv().add(zi);
+        const zi = this.guess[i]
+        const correction = this.newtonsCorrection(zi)
+        return zi.sub(correction.div(complex(1).sub(correction.mult(sum))))
       }
-    );
-    return this.soln;
+    )
+    return this.guess
   }
 
   newtonsCorrection(z){
-    return this.poly.evalAt(z).div(this.poly.D().evalAt(z));
-  }
-
-  inverseNewtonsCorrection(z){
-    return this.poly.D().evalAt(z).div(this.poly.evalAt(z));
-  }
-
-  sumsOfInversesOfDifferences(){
-    const inversesOfDifferences = this.soln.map(
-      (zi, i)=>(this.soln.slice(0, i).map(
-        (zj)=>(zi.sub(zj).inv())
-      ))
-    )
-    const rowSums = inversesOfDifferences.map(
-      (a)=>(a.reduce((x, y)=>(x.sum(y)), 0))
-    );
-    const colSums = Array.from({length: this.poly.degree},
-      (_, i)=>(Array.from({length: this.poly.degree - 1 - i},
-        (__, j)=>(inversesOfDifferences[j+i+1][i])).reduce((a, b)=>(a.sum(b)), 0)
-      )
-    );
-    return Array.from({length: this.poly.degree},
-      (_, i)=>(colSums[i].sub(rowSums[i]))
-    );
+    return this.poly.evalAt(z).div(this.poly.D().evalAt(z))
   }
 }
 

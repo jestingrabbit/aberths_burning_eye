@@ -6,9 +6,11 @@
   "scripts": {
     "test": "jest"
   },
-  "jest":{
+  "jest": {
     "collectCoverage": true,
-    "collectCoverageFrom": ["js/*.js"]
+    "collectCoverageFrom": [
+      "js/*.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,9 @@
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-jest": "^15.0.0",
-    "babel-polyfill": "^6.13.0",
-    "babel-preset-es2015": "^6.14.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^2.0.0-rc.1",
-    "jest": "^15.1.1"
+    "jest": "^22.4.2"
   }
 }

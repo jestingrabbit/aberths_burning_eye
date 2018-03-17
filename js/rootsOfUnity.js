@@ -1,7 +1,6 @@
 import { complex } from './complex.js';
 
-let twoPi = 2*Math.PI;
-
+const twoPi = 2*Math.PI;
 
 /**
  * @classdesc A bag for all the roots of unity, or those rotated by a random bit

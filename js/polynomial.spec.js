@@ -58,4 +58,35 @@ describe("Polynomial", () => {
     })
 
   });
+
+  describe("handles x^2 - 4", () =>{
+    const p = polynomial(1, 0, -4);
+
+    it("gets the degree right", () =>{
+      expect(p.degree).toEqual(2);
+    });
+
+    it("evaluates at 0 to 4", () => {
+      expect(p.evalAt(complex(0))).toEqual(complex(-4));
+    });
+
+    it("evaluates at 3 + 4i to 32i", () => {
+      const z = complex(3, 4);
+      expect(p.evalAt(z)).toEqual(complex(-11, 24));
+    });
+
+    it("D(x^2 + 4) = 2x", () => {
+      expect(p.D().coefficients).toEqual([complex(2), complex(0)]);
+    });
+
+    it("uses the cached derivative", () => {
+      expect(p.D()).toBe(p.D());
+    })
+
+    it("p(2) == 0", () => {
+      expect(p.evalAt(complex(2))).toEqual(complex(0));
+    })
+
+
+  });
 });
